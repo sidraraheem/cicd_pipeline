@@ -26,7 +26,7 @@ dataset = dataset[['sepal_length', 'sepal_width', 'petal_length', 'petal_width',
                    'sepal_length_width_ratio', 'petal_length_width_ratio', 'target']]
 
 # Split Data
-train_data, test_data = train_test_split(dataset, test_size=0.2, random_state=44)
+train_data, test_data = train_test_split(dataset, test_size=0.2, random_state=44, stratify=dataset['target'])
 
 # X_train, y_train, X_test, y_test
 X_train = train_data.drop('target', axis=1).values.astype('float32')
@@ -135,3 +135,4 @@ with open('scores.txt', "w") as score:
     score.write("F1 Score: %2.1f%%\n" % f1_lr)
     score.write("Recall Score: %2.1f%%\n" % recall_lr)
     score.write("Precision Score: %2.1f%%\n" % prec_lr)
+
